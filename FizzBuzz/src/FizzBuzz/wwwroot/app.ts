@@ -5,24 +5,35 @@ class DivisorString {
 }
 
 let test: DivisorString[] = [
+    //new DivisorString(2, `Tic`),
     new DivisorString(3, `Fizz`),
     new DivisorString(7, `Buzz`)
 ];
 
-//for (let testSet of test) {
-//    console.log(`Test using ${testSet.useDivisor}. If matches, display ${testSet.useString}.`)
-//}
-
+function testDivisor(element, index, array) {
+    return element.against % element.divisor == 0; 
+}
 function evaluateExpression(input, testAgainst) {
-    // test against all values ---
-    let evalAll: string = ``;
-    let stringAll: string = ``;
+    let fullString = ``;
+    let allDivisors = [];
     for (let i = 0; i < testAgainst.length; i++) {
-        evalAll += `( ${input} % ${testAgainst[i].useDivisor} == 0 )`;
-        if (i != (testAgainst.length - 1)) { evalAll += ` && `; }
-
+        fullString += testAgainst[i].useString;
+        allDivisors.push(
+            { divisor: testAgainst[i].useDivisor, against: input }
+        );
     }
-    
+    if (allDivisors.every(testDivisor) === false) {
+        // we have failed to matched _every_  instance, but we might match some
+        if (!allDivisors.forEach(testDivisor)) {
+
+            console.log(input);
+        } else {
+            console.log('something magic happens');
+        }
+    } else {
+        // we match everything!
+        console.log(fullString);
+    }
 }
 
 /*
@@ -39,7 +50,7 @@ function evaluateExpression(input, firstDivisor, secondDivisor, firstString, sec
     return input;
 }
 */
-for (let i = 1; i < 5; i++) {
+for (let i = 1; i <= 21; i++) {
     //console.log(evaluateExpression(i, 3, 7, `Fizz`, `Buzz`);
     evaluateExpression(i, test);
 }
