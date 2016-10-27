@@ -5,7 +5,7 @@ class DivisorString {
 }
 
 let test: DivisorString[] = [
-    //new DivisorString(2, `Tic`),
+    new DivisorString(2, `Tic`),
     new DivisorString(3, `Fizz`),
     new DivisorString(7, `Buzz`)
 ];
@@ -22,13 +22,20 @@ function evaluateExpression(input, testAgainst) {
             { divisor: testAgainst[i].useDivisor, against: input }
         );
     }
+    let tempArr = [];
     if (allDivisors.every(testDivisor) === false) {
         // we have failed to matched _every_  instance, but we might match some
-        if (!allDivisors.forEach(testDivisor)) {
+        let someString = ``;
 
+        for (let used of test) {
+            if (input % used.useDivisor === 0) {
+                someString += used.useString;
+            }
+        } // can't use an else on a for-loop, that's just silly
+        // currently printing someString _and_ the input - probably because of the else statement
+        else {
+            // we failed to match anything - output our number
             console.log(input);
-        } else {
-            console.log('something magic happens');
         }
     } else {
         // we match everything!

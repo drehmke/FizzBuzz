@@ -7,7 +7,7 @@ var DivisorString = (function () {
     return DivisorString;
 }());
 var test = [
-    //new DivisorString(2, `Tic`),
+    new DivisorString(2, "Tic"),
     new DivisorString(3, "Fizz"),
     new DivisorString(7, "Buzz")
 ];
@@ -21,13 +21,19 @@ function evaluateExpression(input, testAgainst) {
         fullString += testAgainst[i].useString;
         allDivisors.push({ divisor: testAgainst[i].useDivisor, against: input });
     }
+    var tempArr = [];
     if (allDivisors.every(testDivisor) === false) {
         // we have failed to matched _every_  instance, but we might match some
-        if (!allDivisors.forEach(testDivisor)) {
+        var someString = "";
+        for (var _i = 0, test_1 = test; _i < test_1.length; _i++) {
+            var used = test_1[_i];
+            if (input % used.useDivisor === 0) {
+                someString += used.useString;
+            }
+        } // can't use an else on a for-loop, that's just silly
+        {
+            // we failed to match anything - output our number
             console.log(input);
-        }
-        else {
-            console.log('something magic happens');
         }
     }
     else {
