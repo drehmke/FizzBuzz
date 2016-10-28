@@ -30,15 +30,17 @@ function evaluateExpression(input, testAgainst) {
             if (input % used.useDivisor === 0) {
                 someString += used.useString;
             }
-        } // can't use an else on a for-loop, that's just silly
-        {
-            // we failed to match anything - output our number
+        }
+        if (someString != '') {
+            console.log(someString);
+        }
+        else {
             console.log(input);
         }
     }
     else {
         // we match everything!
-        console.log(fullString);
+        console.log(fullString + " (" + input + ")");
     }
 }
 /*
@@ -55,7 +57,7 @@ function evaluateExpression(input, firstDivisor, secondDivisor, firstString, sec
     return input;
 }
 */
-for (var i = 1; i <= 21; i++) {
+for (var i = 1; i <= 100; i++) {
     //console.log(evaluateExpression(i, 3, 7, `Fizz`, `Buzz`);
     evaluateExpression(i, test);
 }
