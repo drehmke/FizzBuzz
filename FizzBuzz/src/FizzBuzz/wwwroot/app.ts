@@ -7,7 +7,7 @@ class DivisorString {
 let test: DivisorString[] = [
     new DivisorString(2, `Tic`),
     new DivisorString(3, `Fizz`),
-    new DivisorString(10, `Tac`,)
+    //new DivisorString(10, `Tac`),
     new DivisorString(7, `Buzz`)
 ];
 
@@ -23,20 +23,25 @@ function evaluateExpression(input, testAgainst) {
             { divisor: testAgainst[i].useDivisor, against: input }
         );
     }
-    let tempArr = [];
-        let someString = ``;
 
+    if (allDivisors.every(testDivisor) === false) {
+        let someString = ``;
         for (let used of test) {
             if (input % used.useDivisor === 0) {
                 someString += used.useString;
             }
         }
-        if (someString != '') {
+
+        if (someString != ``) {
             console.log(someString);
-        }
-        else {
+        } else {
             console.log(input);
         }
+
+        
+    } else {
+        console.log(fullString);
+    }
 }
 
 for (let i = 1; i <= 100; i++) {
